@@ -87,7 +87,6 @@ parser.add_argument('-d','--debug', help='enter debug mode', default=False, acti
 parser.add_argument('-f', help='input file name', metavar='<filename>', action='store', required=True)
 parser.add_argument('-g','--groups', help='import Groups objects (type:intrusion-set)', default=False, action='store_true')
 parser.add_argument('-s','--softwares', help='import Softwares objects (type:malware)', default=False, action='store_true')
-parser.add_argument('-o','--tools', help='import Tools objects (type:tool)', default=False, action='store_true')
 parser.add_argument('-t','--techniques', help='import Techniques objects (type:attack-pattern and type:course-of-action)', default=False, action='store_true')
 parser.add_argument('-r','--relations', help='import Relations objects (type:relationship)', default=False, action='store_true')
 args = parser.parse_args()
@@ -138,7 +137,7 @@ for obj in data['objects']:
 		build_objects(obj,'x_mitre_aliases')
 
 	# if JSON object is about Tools
-	if args.tools and obj['type']=='tool':
+	if args.software and obj['type']=='tool':
 		gnames[ obj['id'] ] = obj['name']
 		build_objects(obj,'x_mitre_aliases')
 
