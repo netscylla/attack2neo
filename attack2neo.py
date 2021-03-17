@@ -13,7 +13,7 @@ def build_label(txt):
 
 	if txt.startswith('intrusion-set'):		return 'Group'
 	if txt.startswith('malware'):			return 'Software'
-	if txt.startswith('tool'):				return 'Tool'
+	if txt.startswith('tool'):			return 'Software'
 	if txt.startswith('attack-pattern'):	return 'Technique'
 	if txt.startswith('course-of-action'):	return 'Technique'
 	return 'Unknown'
