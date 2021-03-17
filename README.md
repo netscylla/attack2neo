@@ -17,6 +17,24 @@ Modules could be installed using following commands:
 ```
 $ pip install -r requirements.txt
 ```
+
+## Docker Neo4j
+Pull docker image
+```
+docker pull neo4j     
+```
+Run docker
+```
+docker run \
+    --publish=7474:7474 --publish=7687:7687 \
+    --volume=${PWD}:/data \           
+    neo4j
+```   
+Access in your local browser http://127.0.0.1:7474 and configure a user, our example uses:
+ * neo4j:test
+
+But you may want to make your own!
+
 ## Configuration
 Settings have to be defined directly into python script :
 ```
@@ -38,7 +56,6 @@ optional arguments:
   -f <filename>     input file name
   -g, --groups      import Groups objects (type:intrusion-set)
   -s, --softwares   import Softwares objects (type:malware)
-  -o, --tools       import Tools objects (type:tool)
   -t, --techniques  import Techniques objects (type:attack-pattern and
                     type:course-of-action)
   -r, --relations   import Relations objects (type:relationship)
@@ -52,7 +69,7 @@ found out at [Mitre CTI Github](https://github.com/mitre/cti/blob/master/enterpr
 ## Sample
 Let's first import data from Mitre Entreprise Att&amp;ck:
 ```
-$ ./attack2neo.py --debug -f mitre-enterprise-attack.json --groups --softwares --tools --relations
+$ ./attack2neo.py --debug -f enterprise-attack.json --groups --softwares --relations
 [...]
 Group: "Dragonfly 2.0" -[alias]-> "Berserk Bear"
 Group: "Dust Storm"
@@ -162,33 +179,33 @@ RETURN n.name, TYPE(r), LABELS(m), m.name
 ├────────┼─────────┼─────────────────┼───────────────────────┤
 │"APT1"  │"uses"   │["Software"]     │"PoisonIvy"            │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"xCmd"                 │
+│"APT1"  │"uses"   │["Software"]     │"xCmd"                 │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
 │"APT1"  │"uses"   │["Software"]     │"WEBC2"                │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Cachedump"            │
+│"APT1"  │"uses"   │["Software"]     │"Cachedump"            │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Pass-The-Hash Toolkit"│
+│"APT1"  │"uses"   │["Software"]     │"Pass-The-Hash Toolkit"│
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"PsExec"               │
+│"APT1"  │"uses"   │["Software"]     │"PsExec"               │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Net"                  │
+│"APT1"  │"uses"   │["Software"]     │"Net"                  │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"gsecdump"             │
+│"APT1"  │"uses"   │["Software"]     │"gsecdump"             │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
 │"APT1"  │"uses"   │["Software"]     │"BISCUIT"              │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Lslsass"              │
+│"APT1"  │"uses"   │["Software"]     │"Lslsass"              │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Mimikatz"             │
+│"APT1"  │"uses"   │["Software"]     │"Mimikatz"             │
+├────────┼─────────┼────────────────-┼───────────────────────┤
+│"APT1"  │"uses"   │["Software"]     │"ipconfig"             │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"ipconfig"             │
-├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"Tasklist"             │
+│"APT1"  │"uses"   │["Software"]     │"Tasklist"             │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
 │"APT1"  │"uses"   │["Software"]     │"GLOOXMAIL"            │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
-│"APT1"  │"uses"   │["Tool"]         │"pwdump"               │
+│"APT1"  │"uses"   │["Software"]     │"pwdump"               │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
 │"APT1"  │"uses"   │["Software"]     │"CALENDAR"             │
 ├────────┼─────────┼─────────────────┼───────────────────────┤
