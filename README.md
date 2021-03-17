@@ -11,7 +11,7 @@ query Mitre Att&amp;ck data using Cypher Query Language.
 
 ## Requirements
 Following python modules are required :
-- [py2neo v4](https://py2neo.org/v4/)
+- [py2neo v5.0b1](https://py2neo.org/v5/)
 
 Modules could be installed using following commands:
 ```
