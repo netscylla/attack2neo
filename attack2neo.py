@@ -137,7 +137,7 @@ for obj in data['objects']:
 		build_objects(obj,'x_mitre_aliases')
 
 	# if JSON object is about Tools
-	if args.software and obj['type']=='tool':
+	if args.softwares and obj['type']=='tool':
 		gnames[ obj['id'] ] = obj['name']
 		build_objects(obj,'x_mitre_aliases')
 
